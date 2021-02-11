@@ -13,66 +13,40 @@ public class TestAccount {
     public static void main(String[] args) {
         // TODO code application ogic here
 
-        Customer customer;
-        Account account;
-        SavingsAccount interes = new SavingsAccount();
+        Customer cliente;
+        Account cuenta;
 
         Bank.newClient("Andres", "Masapanta");
-        customer = Bank.getCustomer(0);
-        customer.addAccount(new SavingsAccount(100.00, 10.00));//CUENTA DE AHORROS
+        cliente = Bank.getCustomer(0);
+        cliente.addAccount(new SavingsAccount(100.00, 10.00) {
+        });
+        cuenta = cliente.getAccount(0);
+        SavingsAccount interes = (SavingsAccount) cliente.getAccount(0);
+
+        System.out.println("Cuenta Ahorros");
+        System.out.println("Cliente: " + cliente + "\n Su saldo en su cuenta de ahorros es de: " + cuenta.getBalance());
+
+        System.out.println("Cliente: " + cliente + "\n Retiro: 75.00");
+        cuenta.retiro(75);
+        System.out.println("Cliente: " + cliente + "\n Deposito: 25.00");
+        cuenta.deposito(25.00);
+        System.out.println("Cliente: " + cliente + "\n Su saldo en su cuenta de ahorros es de: "    + cuenta.getBalance());
+        System.out.println(interes.calculoInteres());
 
         Bank.newClient("Orlando", "Mendieta");
-        customer = Bank.getCustomer(1);
-        customer.addAccount(new CheckingAccount(100.00, 10.00));// CUENTA CORRIENTE
+        cliente = Bank.getCustomer(1);
+        cliente.addAccount(new CheckingAccount(100.00, 10.00));
+        cuenta = cliente.getAccount(0);
 
+        System.out.println("\nCuenta Corriente");
+        System.out.println("Cliente: " + cliente + "\n Su saldo en su cuenta corriente es de: " + cuenta.getBalance());
 
-        customer = Bank.getCustomer(1);
-        account = customer.getAccount(0);
-        System.out.println("");
-        System.out.println("CLIENTE: " + customer
-                + " Saldo disponible en cuenta corriente: "
-                + account.getBalance());
-
-        System.out.println("Cliente: " + customer + " Retiro: 150.00");
-
-        account.retiro(150.00);
-
-        System.out.println("Cliente: " + customer + " Retiro: 22.50");
-        System.out.println(" ");
-
-        account.deposito(22.50);
-
-        System.out.println("Cliente: " + customer + " Retiro: 147.62");
-
-        account.retiro(147.62);
-
-        System.out.println("Cliente: " + customer + " Retiro: 470.00");
-
-        account.retiro(470.00);
-
-        System.out.println("Cliente: " + customer + " Tiene un saldo de: " + account.getBalance());
-        System.out.println("");
-
-
-        customer = Bank.getCustomer(0);
-        account = customer.getAccount(0);
-
-
-        System.out.println(" ");
-        System.out.println("CLIENTE: " + customer + " Saldo disponible en cuenta ahorros " + account.getBalance());
-
-        System.out.println("Cliente: " + customer + " Retiro: 150.00");
-        account.retiro(150.00);
-        System.out.println("Cliente: " + customer + " Depsito: 22.50");
-        account.deposito(22.50);
-        System.out.println("Cliente: " + customer + " Retiro: 147.62");
-        account.retiro(147.62);
-        System.out.println("Cliente: " + customer + " Retiro: 470.00");
-        account.deposito(470.00);
-        System.out.println("Cliente: " + customer + " Tiene un saldo de: " + account.getBalance());
-
-        System.out.println("Tiene un interes de: " + interes.calculoInteres());
-
+        System.out.println("Cliente: " + cliente + "\n Retiro: 20.00");
+        cuenta.retiro(20);
+        System.out.println("Cliente: " + cliente + "\n Retiro: 85.00");
+        cuenta.retiro(85);
+        System.out.println("Cliente: " + cliente + "\n Deposito: 25.00");
+        cuenta.deposito(25.00);
     }
 
 }

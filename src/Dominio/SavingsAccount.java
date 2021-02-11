@@ -3,7 +3,7 @@ package Dominio;
 
 public class SavingsAccount extends Account {
     private double montoInteres;
-    private double TASA_INTERES;
+    private double TASA_INTERES = 0.01;
 
     public SavingsAccount() {
 
@@ -50,7 +50,8 @@ public class SavingsAccount extends Account {
     }
 
     public double calculoInteres() {
-        return balance;
+        montoInteres = balance * TASA_INTERES;
+        return montoInteres;
 
     }
 

@@ -20,11 +20,23 @@ public class CheckingAccount extends Account {
     @Override
     public boolean retiro(double amt) {
         boolean r = false;
-        if (amt <= 0 || amt + this.sobreGiro > balance + this.sobreGiro) {
-            System.out.println("Fondos Insuficientes!");
-        } else {
-            balance = (balance + this.sobreGiro) - amt;
-            r = true;
+        if (amt > 0 && balance - amt >= 0 - sobreGiro) {
+            if (balance - amt < 0) {
+                sobreGiro += balance - amt;
+                balance -= amt;
+                System.out.println("Usted presenta un sobregiro de: "+sobreGiro);
+                if(balance <=0 ){
+                    System.out.println("Su cuenta no tiene fondos");
+                }
+            } else {
+                balance = balance - amt;
+                System.out.println("Su saldo en su cuenta corriente es de: "+balance);
+                r = true;
+            }
+        }else if (amt<=0){
+            System.out.println ("Su retiro debe ser mayor a 0");
+        }else if (balance + sobreGiro < amt) {
+            System.out.println ("Fondos insuficientes");
         }
         return r;
     }
